@@ -1,0 +1,168 @@
+{
+  "formulaList": [
+                  {
+                  "formula": "(0.5 * year1 + year2)/( (0.25+0.6) * 0.95 * 0.95)",
+                  "name": "productApplaidPremium"
+                  },
+                  {
+                  "formula": "(year1 + year2)/( (0.25+0.6) * 0.95 * 0.95)",
+                  "name": "medAssistanceApplaidPremium"
+                  },
+                  {
+                  "formula": "premium * mode",
+                  "name": "ANP"
+                  },
+                  {
+                  "formula": "(ANP - appliedPremium)",
+                  "name": "unappliedPremium"
+                  },
+                  {
+                  "formula": "adminFee + appliedProductPremium + allRider",
+                  "name": "appliedPremium"
+                  },
+                  {
+                  "formula": "(0.5 * 0 + (productAdminFee * 2) * 12)/((0.25+0.6)*0.95*0.95)",
+                  "name": "adminFee"
+                  },
+                  {
+                  "formula": "sumAssured / maxSumAssuredMultiplier - adminFee - allRider + cor1stYear",
+                  "name": "proporsionalAppliedPremium"
+                  },
+                  {
+                  "formula": "FUNCTION( coi, 'isMaximum:', proporsionalAppliedPremium )",
+                  "name": "appliedProductPremium"
+                  }
+                  ],
+  "formulaSquence": [
+                     "adminFee",
+                     "proporsionalAppliedPremium",
+                     "appliedProductPremium",
+                     "appliedPremium",
+                     "ANP",
+                     "unappliedPremium"
+                     ],
+  "coiCorGroup": [
+                  {
+                  "names": [
+                            "product",
+                            "addb",
+                            "ci plus",
+                            "ci",
+                            "tpd",
+                            "tpda",
+                            "term70"
+                            ],
+                  "formulaList": [
+                                  {
+                                  "name": "year1",
+                                  "formula": "(loadingMile + (1 + loadingPercentage) * table) / 1000 * sumAssured"
+                                  },
+                                  {
+                                  "formula": "(loadingMile + (1 + loadingPercentage) * table) / 1000 * sumAssured",
+                                  "name": "year2"
+                                  }
+                                  ]
+                  },
+                  {
+                  "names": [
+                            "ci 100s"
+                            ],
+                  "formulaList": [
+                                  {
+                                  "name": "year1",
+                                  "formula": "(loadingMile + (1 + loadingPercentage) * table) * sumAssured / 1000"
+                                  },
+                                  {
+                                  "formula": "(loadingMile + (1 + loadingPercentage) * table) * sumAssured / 1000",
+                                  "name": "year2"
+                                  }
+                                  ]
+                  },
+                  {
+                  "names": [
+                            "hsrider",
+                            "smcr"
+                            ],
+                  "formulaList": [
+                                  {
+                                  "name": "year1",
+                                  "formula": "((1 + loadingPercentage) * table ) * 12"
+                                  },
+                                  {
+                                  "formula": "((1 + loadingPercentage) * table ) * 12",
+                                  "name": "year2"
+                                  }
+                                  ]
+                  },
+                  {
+                  "names": [
+                            "pbr",
+                            "ppr",
+                            "spbr",
+                            "sppr"
+                            ],
+                  "formulaList": [
+                                  {
+                                  "name": "year1",
+                                  "formula": "(loadingMile + (1 + loadingPercentage) * table) / 100 * sumAssured"
+                                  },
+                                  {
+                                  "formula": "(loadingMile + (1 + loadingPercentage) * table) / 100 * sumAssured",
+                                  "name": "year2"
+                                  }
+                                  ]
+                  },
+                  {
+                  "names": [
+                            "fam1",
+                            "fam2",
+                            "fam3",
+                            "fam4",
+                            "fam5"
+                            ],
+                  "formulaList": [
+                                  {
+                                  "name": "year1",
+                                  "formula": "((1 + loadingPercentage) * table) * sumAssured"
+                                  },
+                                  {
+                                  "formula": "((1 + loadingPercentage) * table) * sumAssured",
+                                  "name": "year2"
+                                  }
+                                  ]
+                  },
+                  {
+                  "names": [
+                            "flexci",
+                            "genspe",
+                            "preset",
+                            "contcan"
+                            ],
+                  "formulaList": [
+                                  {
+                                  "name": "year1",
+                                  "formula": "(loadingMile + (1 + loadingPercentage) * table) / 1000 * sumAssured"
+                                  },
+                                  {
+                                  "formula": "(loadingMile + (1 + loadingPercentage) * table) / 1000 * sumAssured",
+                                  "name": "year2"
+                                  }
+                                  ]
+                  },
+                  {
+                  "names": [
+                            "medAssistance"
+                            ],
+                  "formulaList": [
+                                  {
+                                  "name": "year1",
+                                  "formula": "72000"
+                                  },
+                                  {
+                                  "formula": "72000",
+                                  "name": "year2"
+                                  }
+                                  ]
+                  }
+                  ]
+}

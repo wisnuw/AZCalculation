@@ -1,0 +1,299 @@
+{
+  "initalValues": {
+    "regTUUnitValueEOM": 0,
+    "basePremiumUnitValueEOM": 0,
+    "singleTopup": 0,
+    "withdraw": 0,
+    "bidOfferSpread": 0.05,
+    "investmentAllocation": 1,
+    "interest": 0.08,
+    "topup": 0,
+    "supplChg": 0,
+    "totalRider": 0,
+    "fundManagentFee": 0,
+    "addb_value": 0,
+    "fam1_value": 0,
+    "fam2_value": 0,
+    "fam3_value": 0,
+    "fam4_value": 0,
+    "fam5_value": 0,
+    "ci100s_value": 0,
+    "ciplus_value": 0,
+    "hsrider_value": 0,
+    "smcr_value": 0,
+    "tpda_value": 0,
+    "tpd_value": 0,
+    "pbr_value": 0,
+    "ppr_value": 0,
+    "spbr_value": 0,
+    "sppr_value": 0
+  },
+  "preFormulaList": [
+    {
+      "formula": "premium * mode",
+      "name": "planPremium",
+      "description": "plan premium and mode is payment term. Excel = E22"
+    },
+    {
+      "formula": "topup * mode",
+      "name": "regularTopup",
+      "description": "plan topup and mode is payment term. Excel = F22"
+    },
+    {
+      "formula": "planPremium * investmentAllocation * allocation_value",
+      "name": "basePremiumNetAllocated",
+      "description": "Excel = I22"
+    },
+    {
+      "formula": "(regularTopup + singleTopup) * investmentAllocation * (1-bidOfferSpread) - withdraw",
+      "name": "topUpNetAllocated",
+      "description": "Excel = J22"
+    }
+  ],
+  "formulaList": [
+    {
+      "formula": "FUNCTION( 26500 * investmentAllocation , 'isNotAvailableForFirstYear:', year)",
+      "name": "adminCost",
+      "description": "Excel = K22"
+    },
+    {
+      "formula": "basePremiumNetAllocated-adminCost-supplChg+basePremiumUnitValueEOM",
+      "name": "basePremiumUnitValueBOM",
+      "description": "Excel = M22"
+    },
+    {
+      "formula": "topUpNetAllocated + regTUUnitValueEOM",
+      "name": "topUpUnitValueBOM",
+      "description": "Excel = N22"
+    },
+    {
+      "formula": "basePremiumUnitValueBOM - product_value - (addb_value + fam1_value + fam2_value + fam3_value + fam4_value  + fam5_value + ci100s_value + ciplus_value + smcr_value + hsrider_value + tpda_value + tpd_value + pbr_value + ppr_value + spbr_value + sppr_value)",
+      "name": "basePremiumAfterTotalExpenses",
+      "description": "Excel = AK22"
+    },
+    {
+      "formula": "((1.0 + interest)**(1.0/12.0) - 1.0) * basePremiumAfterTotalExpenses",
+      "name": "basePremiumGrowthEOM",
+      "description": "Excel = AL22"
+    },
+    {
+      "formula": "basePremiumAfterTotalExpenses + basePremiumGrowthEOM",
+      "name": "basePremiumBeforeMgtCharge",
+      "description": "Excel = AM22"
+    },
+    {
+      "formula": "fundManagentFee / 12.0 * basePremiumBeforeMgtCharge*investmentAllocation",
+      "name": "managementCharge",
+      "description": "Excel = AN22"
+    },
+    {
+      "formula": "basePremiumBeforeMgtCharge - managementCharge - 0",
+      "name": "basePremiumUnitValueEOM",
+      "description": "Excel = AP22"
+    },
+    {
+      "formula": "((1.0 + interest)**(1.0/12.0) - 1.0)* topUpUnitValueBOM",
+      "name": "topUpGrowthEOM",
+      "description": "Excel = AQ22"
+    },
+    {
+      "formula": "topUpUnitValueBOM + topUpGrowthEOM",
+      "name": "regTUUnitValueEOM",
+      "description": "Excel = AR22"
+    },
+    {
+      "formula": "basePremiumUnitValueEOM + regTUUnitValueEOM",
+      "name": "unitValueEOM",
+      "description": "Excel = I22"
+    }
+  ],
+  "formulaSquence": [
+    "adminCost",
+    "basePremiumUnitValueBOM",
+    "topUpUnitValueBOM",
+    "basePremiumAfterTotalExpenses",
+    "basePremiumGrowthEOM",
+    "basePremiumBeforeMgtCharge",
+    "managementCharge",
+    "basePremiumUnitValueEOM",
+    "topUpGrowthEOM",
+    "regTUUnitValueEOM",
+    "unitValueEOM"
+  ],
+  "tableFormulaGroup": [
+    {
+      "formula": "FUNCTION( (coi1 + coi3) * sumAssured / 12 * investmentAllocation , 'isNotAvailableForFirstYear:', year)",
+      "names": [
+        "fam1",
+        "fam2",
+        "fam3",
+        "fam4",
+        "fam5"
+      ],
+      "requiredInput": [
+        "investmentAllocation"
+      ],
+      "subFormula": [
+        {
+          "formula": "((1 + loadingPercentage) * table)",
+          "name": "coi1",
+          "rounding": true
+        },
+        {
+          "formula": " FUNCTION( ((1 + loadingPercentage) * firstYear), 'isAvailableForSecondAndThirdYear:', year)",
+          "name": "coi2",
+          "rounding": true
+        },
+        {
+          "formula": "coi2/2",
+          "name": "coi3"
+        }
+      ]
+    },
+    {
+      "formula": "FUNCTION( (cor1 + cor3)  / (12*1000) * sumAssured * investmentAllocation , 'isNotAvailableForFirstYear:', year)",
+      "names": [
+        "addb",
+        "ci plus",
+        "tpda",
+        "tpd"
+      ],
+      "requiredInput": [
+        "investmentAllocation"
+      ],
+      "subFormula": [
+        {
+          "formula": "loadingMile + (1 + loadingPercentage) * table",
+          "name": "cor1",
+          "rounding": true,
+          "description": "Excel = Q22"
+        },
+        {
+          "formula": " FUNCTION( (loadingMile + (1 + loadingPercentage) * firstYear), 'isAvailableForSecondAndThirdYear:', year)",
+          "name": "cor2",
+          "rounding": true
+        },
+        {
+          "formula": "cor2/2",
+          "name": "cor3"
+        }
+      ]
+    },
+    {
+      "formula": "FUNCTION( (cor1 + cor3)  / (12*100) * sumAssured * investmentAllocation * mode , 'isNotAvailableForFirstYear:', year)",
+      "names": [
+        "pbr",
+        "ppr",
+        "spbr",
+        "sppr"
+      ],
+      "requiredInput": [
+        "investmentAllocation"
+      ],
+      "subFormula": [
+        {
+          "formula": "loadingMile + (1 + loadingPercentage) * table",
+          "name": "cor1",
+          "rounding": true,
+          "description": "Excel = Q22"
+        },
+        {
+          "formula": " FUNCTION( (loadingMile + (1 + loadingPercentage) * firstYear), 'isAvailableForSecondAndThirdYear:', year)",
+          "name": "cor2",
+          "rounding": true
+        },
+        {
+          "formula": "cor2/2",
+          "name": "cor3"
+        }
+      ]
+    },
+    {
+      "formula": "FUNCTION( (cor1 + cor3) * investmentAllocation , 'isNotAvailableForFirstYear:', year)",
+      "names": [
+        "smcr",
+        "hsrider"
+      ],
+      "requiredInput": [
+        "investmentAllocation"
+      ],
+      "subFormula": [
+        {
+          "formula": "(1 + loadingPercentage) * table",
+          "name": "cor1",
+          "rounding": true,
+          "description": "Excel = Q22"
+        },
+        {
+          "formula": " FUNCTION( ((1 + loadingPercentage) * firstYear), 'isAvailableForSecondAndThirdYear:', year)",
+          "name": "cor2",
+          "rounding": true
+        },
+        {
+          "formula": "cor2/2",
+          "name": "cor3"
+        }
+      ]
+    }
+  ],
+  "tableFormula": [
+    {
+      "formula": "(table * (1.0 - bidOfferSpread))",
+      "name": "allocation",
+      "description": " Get allocation table value for calculate basePremiumNetAllocated. Excel = J22",
+      "requiredInput": [
+        "bidOfferSpread"
+      ]
+    },
+    {
+      "formula": "FUNCTION( (coi1 + coi3) / (12*1000) * sumAssured * investmentAllocation , 'isNotAvailableForFirstYear:', year)",
+      "name": "product",
+      "description": "Excel = P22",
+      "requiredInput": [
+        "investmentAllocation"
+      ],
+      "subFormula": [
+        {
+          "formula": "loadingMile + (1 + loadingPercentage) * table",
+          "name": "coi1",
+          "rounding": true,
+          "description": " Get allocation table value for calculate basePremiumNetAllocated. Excel = J22"
+        },
+        {
+          "formula": " FUNCTION( (loadingMile + (1 + loadingPercentage) * firstYear), 'isAvailableForSecondAndThirdYear:', year)",
+          "name": "coi2",
+          "rounding": true,
+          "description": " We need to add  first year coi on 2nd and 3rd year COI"
+        },
+        {
+          "formula": "coi2/2",
+          "name": "coi3",
+          "description": " We need to add first year addb rider r on 2nd and 3rd year addb rider"
+        }
+      ]
+    },
+    {
+      "formula": "FUNCTION( (cor1 + cor3) * sumAssured / 1000 / 12 * investmentAllocation , 'isNotAvailableForFirstYear:', year)",
+      "name": "ci 100s",
+      "requiredInput": [
+        "investmentAllocation"
+      ],
+      "subFormula": [
+        {
+          "formula": "(loadingMile + (1 + loadingPercentage) * table)",
+          "name": "cor1",
+          "rounding": true
+        },
+        {
+          "formula": " FUNCTION( (loadingMile + (1 + loadingPercentage) * firstYear), 'isAvailableForSecondAndThirdYear:', year)",
+          "name": "cor2",
+          "rounding": true
+        },
+        {
+          "formula": "cor2/2",
+          "name": "cor3"
+        }
+      ]
+    }
+  ]
+}
