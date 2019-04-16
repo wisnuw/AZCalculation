@@ -575,4 +575,23 @@ class AZCalculationTests: XCTestCase {
     
     debugPrint(premium);
   }
+    
+    func test_swift_version() {
+        #if swift(>=3.0)
+        print(">=3.0")
+        #endif
+        
+        #if swift(>=4.0)
+        print(">=4.0")
+        #endif
+        
+        #if swift(>=4.2)
+        print(">=4.2")
+        #endif
+        
+        #if swift(>=5)
+        print(">=5")
+        #endif
+    }
+    
 }
