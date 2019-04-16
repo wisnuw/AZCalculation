@@ -1,0 +1,13 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/build/Release-iphoneos/AZCalculation.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/build/AZCalculation.build/Release-iphoneos/AZCalculation.build/unextended-module.modulemap",
+    }]
+  }]
+}

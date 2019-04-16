@@ -58,21 +58,21 @@ public func +(lhs: Decimal, rhs: Decimal) -> Decimal{
 
 public extension NSDecimalNumber {
   
-  public func rounding(_ mode:NSDecimalNumber.RoundingMode = .plain, isDoubleMode:Bool = false, fraction:Int = 0) -> NSDecimalNumber {
+    func rounding(_ mode:NSDecimalNumber.RoundingMode = .plain, isDoubleMode:Bool = false, fraction:Int = 0) -> NSDecimalNumber {
     if isDoubleMode {
-      return self.roundDouble(Double(self), fractions: fraction)
+        return self.roundDouble(Double(truncating: self), fractions: fraction)
     }
     
     return self.rounding(accordingToBehavior: NSDecimalNumberHandler(roundingMode: mode, scale: 0, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false))
   }
   
-  public func roundUp(toPlaces places: Double) -> NSDecimalNumber{
+    func roundUp(toPlaces places: Double) -> NSDecimalNumber{
     guard places >= 0 else { return self }
     let powValue:Double = pow(10.0, places)
     let roundup  =  (self.doubleValue / powValue).rounded(.up) * powValue
     return NSDecimalNumber.init(value: roundup)
   }
-  public func roundDouble(_ paramDouble:Double, fractions paramInt:Int) -> NSDecimalNumber {
+    func roundDouble(_ paramDouble:Double, fractions paramInt:Int) -> NSDecimalNumber {
     var param = paramDouble
     let l1:Int64 = Int64(Darwin.pow(10.0, Double(abs(paramInt))))
     var l2:Int64 = 0

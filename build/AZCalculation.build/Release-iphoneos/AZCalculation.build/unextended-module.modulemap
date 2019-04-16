@@ -1,0 +1,10 @@
+framework module AZCalculation {
+  umbrella header "AZCalculation.h"
+
+  export *
+  module * { export * }
+}
+
+module AZCalculation.__Swift {
+    exclude header "AZCalculation-Swift.h"
+}

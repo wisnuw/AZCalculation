@@ -1,0 +1,11 @@
+framework module AZCalculation {
+  umbrella header "AZCalculation.h"
+
+  export *
+  module * { export * }
+}
+
+module AZCalculation.Swift {
+    header "AZCalculation-Swift.h"
+    requires objc
+}

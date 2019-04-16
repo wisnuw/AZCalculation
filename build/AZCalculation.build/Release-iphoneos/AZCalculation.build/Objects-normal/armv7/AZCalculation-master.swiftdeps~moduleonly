@@ -1,0 +1,15 @@
+version: "Apple Swift version 5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)"
+options: "ce23b22c93640f389daa8c6698070bfb"
+build_time: [1555386647, 383077000]
+inputs:
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/AZUnitLinkUnappliedPremium.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/AZIllustrationCalculation.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/Database/SQLiteDB.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/Database/SQLTable.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/AZDecimalNumber.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/AZCalculator.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/AZFormula.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/AZIllustrationTableModel.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/AZFormulaMapping.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/AZUPModel.swift": [9223372036, 854775807]
+  "/Users/wisnuwardana/Documents/Allianz/Frameworks/AZCalculation/AZCalculation/AZDBManager.swift": [9223372036, 854775807]
